@@ -68,7 +68,7 @@ setup(
 
 
     classifiers=[
-        "Development Status:: 5 - Production / Stable",
+        "Development Status :: 5 - Production/Stable",
         "License :: OSI Approved :: MIT License",
 
         "Programming Language :: Python :: 3",
@@ -81,6 +81,7 @@ setup(
 
         "Framework :: Django :: 3.0",
         "Framework :: Django :: 3.1",
+        "Framework :: Django :: 3.2",
     ],
 
 )
