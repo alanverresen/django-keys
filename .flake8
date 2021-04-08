@@ -1,0 +1,12 @@
+# ----------------------------------------------------------------------------
+# .flake8
+# ----------------------------------------------------------------------------
+# Used to configure 'flake8' tool for linting.
+# ----------------------------------------------------------------------------
+
+[flake8]
+exclude =
+    .git,           # no need to traverse our git directory
+    __pycache__,    # no need to check cache directories
+max-line-length = 79
+max-complexity = 10
