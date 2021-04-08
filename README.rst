@@ -1,5 +1,5 @@
 ##############################################################################
-django-keys 1.0.0
+django-keys 1.0.1
 ##############################################################################
 
 Python package and CLI tool for generating and handling secret keys used by
