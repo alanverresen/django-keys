@@ -2,6 +2,10 @@
 django-keys 1.0.1
 ##############################################################################
 
+.. image:: https://travis-ci.com/alanverresen/django-keys.svg?branch=master
+    :target: https://travis-ci.com/alanverresen/django-keys
+    :alt:
+
 .. image:: https://readthedocs.org/projects/django-keys/badge/?version=latest
     :target: https://django-keys.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
