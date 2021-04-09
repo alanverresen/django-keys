@@ -43,7 +43,7 @@ setup(
     name="django-keys",
     url="https://github.com/alanverresen/django-keys",
     version="1.0.1",
-    python_requires=">=3.6",
+    python_requires=">=3.7",
     license="MIT",
 
     description="Python package and CLI tool for generating and handling secret keys used by Django applications.",
