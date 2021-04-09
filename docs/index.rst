@@ -12,7 +12,11 @@ secret keys used by Django applications.
    :maxdepth: 1
    :caption: User Guide:
 
+   content/user_guide/introduction
+   content/user_guide/installation
    content/user_guide/getting_started
+   content/user_guide/DjangoKeys
+   content/user_guide/warnings
 
 
 .. toctree::

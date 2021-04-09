@@ -25,7 +25,7 @@ sys.path.insert(0, os.path.abspath('..'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'PythonAnywhere Log Viewer'
+project = 'django-keys'
 copyright = 'Alan Verresen'
 author = 'Alan Verresen'
 
