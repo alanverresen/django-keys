@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# Contains tests for accessing env varss that aren't listed in .env.
+# Contains tests for accessing env vars that aren't listed in .env.
 
 from djangokeys.djangokeys import DjangoKeys
 

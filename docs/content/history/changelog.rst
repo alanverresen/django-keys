@@ -24,9 +24,26 @@ Types of Changes
 Unreleased
 ----------
 
-The following changes are planned to happen in the future:
+The following changes may happen in the future:
 
-- Nothing planned at the moment.
+- add more warnings about problems related to environment variables
+- add CLI tool to generate local .env files
+- support for Amazon AWS Secrets Manager
+- support for HashiCorp Vault
+- add support for other secrets management services
+
+
+1.0.2 - 2021-04-11
+------------------
+
+PROJECT
+~~~~~~~
+- Dropped support for Python 3.6
+- Added support for Python 3.9
+
+ADDED
+~~~~~
+- Added DjangoKeys class.
 
 
 1.0.1 - 2021-04-08

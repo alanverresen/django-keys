@@ -6,13 +6,14 @@ Introduction
 What is django-keys?
 -------------------------------------------------------------------------------
 
-**django-keys** is a Python package used for handling Django's settings in a
-secure and portable way:
+**django-keys** is a Python package used for handling Django's secrets and
+settings in a secure and portable way:
 
 * reads secrets from configuration files and environment variables
 * checks settings for common problems and irregularities
 * generate local `.env` files to specify environment variables
-* generate secure SECRET_KEY values on-the-fly for new environments
+* generate secure SECRET_KEY values
+* CLI tools to get started as fast as possible
 
 
 -------------------------------------------------------------------------------
@@ -35,11 +36,12 @@ A typical Django project involves one of two types of secrets:
 On top of managing several secrets, Django projects typically also have to
 manage various configuration settings that depend on the environments that
 they are deployed in. For example, the DATABASES setting used by developers,
-is likely to be different from the DATABASES setting used in production
-environments.
+or in test environments, is likely to be different from the DATABASES setting
+used in production environments.
 
 **django-keys** provides a unified approach to handle all of these problems in
 a clean and secure way that is easy to manage.
+
 
 -------------------------------------------------------------------------------
 Approaches
@@ -56,7 +58,7 @@ There is no right answer to which approach is best, as each approach comes with
 several advantages and disadvantages. Using an approach based on using
 environment variables is recommended by the authors of the twelve-factor app
 methodology (https://www.12factor.net/config), although they do acknowledge
-that the second approach may work as well.
+that the second approach can work as well.
 
 Tools that are used to configure execution environments universally support
 setting specific environment variables, but usually do this through a startup
@@ -90,15 +92,14 @@ Why django-keys?
 **WARNING: These promises are still in development.**
 
 Although using any of the aforementioned packages is fine, neither seems to
-be an ideal tool to use for Django specific. Besides parsing and reading
+be an ideal tool to use for Django specifically. Besides reading additional
 environment variables from a `.env` file, **django-keys** promises to do more
 and do it better:
 
-* alerts users when a sensitive Django setting isn't properly secured
 * builds `.env` files automatically based on your settings file
-* supports other file formats besides `.env` files for storing keys
-    * JSON
-    * YAML
+* alert users when potential security problems are detected
+* supports other file formats besides `.env` files for storing keys (JSON, YAML)
+* direct support for secrets management services
 
 It's the fully integrated solution for managing keys in Django projects.
 

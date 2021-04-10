@@ -20,9 +20,30 @@ class DjangoKeys:
         """ Initializes a new instance of DjangoKeys.
 
         :param str path: filepath to .env file containing environment vars
+
+        :raises FileDoesNotExist: specified .env file was not found
         """
         self._path = path
         self._values = read_values_from_env(path)
+
+    def secret_key(self, key, *, overwrite=False):
+        """ Access environment variable used to store value of Django's
+            SECRET_KEY setting.
+
+        :param str key: name of environment variable
+        :param bool overwrite: .env file can overwrite execution environment
+
+        :rtype: str
+        :returns: value of environment variable as a string
+
+        :raises EnvironmentVariableNotFound: environment variable not set
+        """
+        value = self._get_value(key, overwrite=overwrite)
+        if value == "":
+            msg = "Environment variable '{}' cannot be empty; is secret key."
+            raise ValueIsEmpty(msg.format(key))
+        else:
+            return value
 
     def str(self, key, *, overwrite=False):
         """ Access environment variable as a simple string.
@@ -119,6 +140,5 @@ class DjangoKeys:
         elif overwrite:
             return fev
         else:
-            # msg = "Warning: tried to overwrite environment variable '{}'"
-            # TODO: add warning
+            # TODO: "Warning: tried to overwrite environment variable '{}'"
             return oev

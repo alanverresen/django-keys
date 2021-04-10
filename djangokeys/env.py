@@ -10,7 +10,11 @@ from djangokeys.exceptions import FileDoesNotExist
 
 
 def read_values_from_env(filepath):
-    """
+    """ Reads environment variables from .env file with a given path.
+
+    :param str filepath: path of file
+    :return: dictionary containing key-value pairs listed in file
+    :rtype: dict
     """
     if not os.path.exists(filepath):
         msg = "Could not read environment variables from '{}'."
