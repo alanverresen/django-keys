@@ -20,16 +20,17 @@ only argument.
    EMAIL_HOST = keys.str("EMAIL_HOST")
    EMAIL_PORT = keys.int("EMAIL_PORT")
    EMAIL_ADDRESS = keys.str("EMAIL_ADDRESS")
-   EMAIL_PASSWORD = keys.str("EMAIL_PASSWORD", secret=True)
+   EMAIL_PASSWORD = keys.str("EMAIL_PASSWORD")
    EMAIL_USE_TLS = keys.bool("EMAIL_USE_TLS")
 
    SECRET_KEY = keys.secret_key("SECRET_KEY")
 
    keys.report_problems()
 
-At the end of the settings file, you can call the `report_problems` method
+At the end of the settings file, you can call the `report_problems()` method
 to report potential problems, such as unused environment variables that were
-set by the '.env' file.
+set by the '.env' file. This should not result in the server being stopped,
+unless a very serious problem has been found.
 
 
 -------------------------------------------------------------------------------

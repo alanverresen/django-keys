@@ -8,17 +8,16 @@ Which Versions?
 
 This project actively supports the following versions of Python:
 
-* Python 3.6
 * Python 3.7
 * Python 3.8
-
+* Python 3.9
 
 -------------------------------------------------------------------------------
 Guiding Principles
 -------------------------------------------------------------------------------
 
 The following principles are used to determine which versions of Python are
-to be supported:
+to be supported, unless there's a good reason not to do so:
 
 * every major release of Python that is still maintained should be supported
 * support should be added for final release candidates of a new major release
