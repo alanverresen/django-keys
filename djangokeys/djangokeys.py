@@ -142,3 +142,9 @@ class DjangoKeys:
         else:
             # TODO: "Warning: tried to overwrite environment variable '{}'"
             return oev
+
+    def report_problems(self):
+        """ Reports any problems after having been used, such as unused
+            environment variables specified in .env file.
+        """
+        pass  # currently does nothing yet
