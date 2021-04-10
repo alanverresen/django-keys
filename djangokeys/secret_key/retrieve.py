@@ -6,9 +6,9 @@
 import os
 
 from .generate import generate_django_key
-from .exceptions import KeyNotFound
-from .exceptions import KeyNotGenerated
-from .exceptions import CouldNotAccessKey
+from djangokeys.exceptions import KeyNotFound
+from djangokeys.exceptions import KeyNotGenerated
+from djangokeys.exceptions import CouldNotAccessKey
 
 
 def retrieve_key_from_file(filepath, *, strict=False):

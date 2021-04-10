@@ -3,7 +3,7 @@
 
 # Contains unit tests for functionality related to generating keys.
 
-from djangokeys.generate import generate_django_key
+from djangokeys.secret_key.generate import generate_django_key
 from djangokeys.settings import DJANGO_DEFAULT_KEY_LENGTH
 from djangokeys.settings import DJANGO_DEFAULT_SYMBOLS
 

@@ -9,7 +9,7 @@
 
 import argparse
 
-from .generate import generate_django_key
+from djangokeys.secret_key.generate import generate_django_key
 from .settings import DJANGO_DEFAULT_KEY_LENGTH
 
 

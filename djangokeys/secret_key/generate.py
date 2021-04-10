@@ -5,8 +5,8 @@
 
 import secrets
 
-from .settings import DJANGO_DEFAULT_KEY_LENGTH as DEFAULT_LENGTH
-from .settings import DJANGO_DEFAULT_SYMBOLS as DEFAULT_SYMBOLS
+from djangokeys.settings import DJANGO_DEFAULT_KEY_LENGTH as DEFAULT_LENGTH
+from djangokeys.settings import DJANGO_DEFAULT_SYMBOLS as DEFAULT_SYMBOLS
 
 
 def generate_django_key(*, key_length=DEFAULT_LENGTH, symbols=DEFAULT_SYMBOLS):
