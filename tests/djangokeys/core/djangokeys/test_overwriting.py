@@ -3,7 +3,7 @@
 
 # Contains tests for overwriting environment variables set by exec env.
 
-from djangokeys.djangokeys import DjangoKeys
+from djangokeys.core.djangokeys import DjangoKeys
 
 from tests.files import DJANGOKEYS_OVERWRITING_ENV_PATH
 from tests.utils.environment_vars import use_environment_variable

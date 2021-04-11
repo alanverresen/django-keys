@@ -6,7 +6,7 @@
 import pytest
 
 from djangokeys.exceptions import FileDoesNotExist
-from djangokeys.env import read_values_from_env
+from djangokeys.core.env import read_values_from_env
 
 from tests.files import EXAMPLE1_ENV_PATH
 from tests.utils.environment_vars import use_environment_variable

@@ -5,7 +5,7 @@
 
 import pytest
 
-from djangokeys.djangokeys import DjangoKeys
+from djangokeys.core.djangokeys import DjangoKeys
 from djangokeys.exceptions import EnvironmentVariableNotFound
 
 from tests.files import DJANGOKEYS_ACCESSING_TYPES_ENV_PATH

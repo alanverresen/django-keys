@@ -3,7 +3,7 @@
 
 # Contains tests for djangokeys submodule.
 
-from djangokeys.djangokeys import DjangoKeys
+from djangokeys.core.djangokeys import DjangoKeys
 
 from tests.files import EXAMPLE1_ENV_PATH
 

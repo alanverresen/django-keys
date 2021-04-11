@@ -3,7 +3,7 @@
 
 # Contains tests for reporting potential problems.
 
-from djangokeys.djangokeys import DjangoKeys
+from djangokeys.core.djangokeys import DjangoKeys
 
 from tests.files import EMPTY_ENV_PATH
 

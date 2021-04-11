@@ -5,7 +5,7 @@
 
 import os
 
-from .generate import generate_django_key
+from djangokeys.core.secret_key import generate_django_key
 from djangokeys.exceptions import KeyNotFound
 from djangokeys.exceptions import KeyNotGenerated
 from djangokeys.exceptions import CouldNotAccessKey

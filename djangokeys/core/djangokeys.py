@@ -5,7 +5,7 @@
 
 from os import getenv
 
-from djangokeys.env import read_values_from_env
+from djangokeys.core.env import read_values_from_env
 from djangokeys.exceptions import EnvironmentVariableNotFound
 from djangokeys.exceptions import ValueTypeMismatch
 from djangokeys.exceptions import ValueIsEmpty
@@ -42,8 +42,7 @@ class DjangoKeys:
         if value == "":
             msg = "Environment variable '{}' cannot be empty; is secret key."
             raise ValueIsEmpty(msg.format(key))
-        else:
-            return value
+        return value
 
     def str(self, key, *, overwrite=False):
         """ Access environment variable as a simple string.
@@ -75,10 +74,11 @@ class DjangoKeys:
             msg = "Environment variable '{}' is empty; expected int."
             raise ValueIsEmpty(msg.format(key))
         try:
-            return int(value)
+            value = int(value)
         except ValueError:
             msg = "Could not interpret environment variable '{}' as int: {}"
             raise ValueTypeMismatch(msg.format(key, value))
+        return value
 
     def float(self, key, *, overwrite=False):
         """ Access environment variable as an integer.
@@ -97,10 +97,11 @@ class DjangoKeys:
             msg = "Environment variable '{}' is empty; expected float."
             raise ValueIsEmpty(msg.format(key))
         try:
-            return float(value)
+            value = float(value)
         except ValueError:
             msg = "Could not interpret environment variable '{}' as float: {}"
             raise ValueTypeMismatch(msg.format(key, value))
+        return value
 
     def bool(self, key, *, overwrite=False):
         """ Access environment variable as a boolean.
@@ -133,9 +134,9 @@ class DjangoKeys:
         if oev is None and fev is None:
             msg = "Could not find an environment variable '{}'"
             raise EnvironmentVariableNotFound(msg.format(key))
-        elif oev is None:
+        elif oev is None and fev is not None:
             return fev
-        elif fev is None:
+        elif oev is not None and fev is None:
             return oev
         elif overwrite:
             return fev

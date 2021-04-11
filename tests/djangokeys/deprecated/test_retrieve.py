@@ -10,7 +10,7 @@ import unittest
 from tempfile import TemporaryDirectory
 from unittest.mock import patch
 
-from djangokeys.secret_key.retrieve import retrieve_key_from_file
+from djangokeys.deprecated.retrieve import retrieve_key_from_file
 from djangokeys.settings import DJANGO_DEFAULT_KEY_LENGTH
 from djangokeys.settings import DJANGO_DEFAULT_SYMBOLS
 from djangokeys.exceptions import KeyNotFound
@@ -51,7 +51,7 @@ class RetrieveKeyFromFileTests(unittest.TestCase):
         """ Test that exception is raised when trying to retrieve a key in
             strict mode from an inaccessible file.
         """
-        with patch("djangokeys.secret_key.retrieve._read_from_file") as mock:
+        with patch("djangokeys.deprecated.retrieve._read_from_file") as mock:
             mock.side_effect = IOError("could not read")
             with pytest.raises(CouldNotAccessKey):
                 retrieve_key_from_file(self.OLD_SECRET_PATH, strict=True)
@@ -72,7 +72,7 @@ class RetrieveKeyFromFileTests(unittest.TestCase):
     def test__lax__exists__inaccessible(self):
         """ Test that exception is raised when key cannot be read from file.
         """
-        with patch("djangokeys.secret_key.retrieve._read_from_file") as mock:
+        with patch("djangokeys.deprecated.retrieve._read_from_file") as mock:
             mock.side_effect = IOError("could not read")
             with pytest.raises(CouldNotAccessKey):
                 retrieve_key_from_file(self.OLD_SECRET_PATH, strict=False)
@@ -94,7 +94,7 @@ class RetrieveKeyFromFileTests(unittest.TestCase):
     def test_lax__does_not_exist__inaccessible__cannot_write(self):
         """ Test that exception is raised when key cannot be written to file.
         """
-        with patch("djangokeys.secret_key.retrieve._write_to_file") as mock:
+        with patch("djangokeys.deprecated.retrieve._write_to_file") as mock:
             mock.side_effect = IOError("could not write")
             with pytest.raises(KeyNotGenerated):
                 retrieve_key_from_file(self.NEW_SECRET_PATH, strict=False)
@@ -103,7 +103,7 @@ class RetrieveKeyFromFileTests(unittest.TestCase):
         """ Test that exception is raised when newly generated key cannot be
             read back from file.
         """
-        with patch("djangokeys.secret_key.retrieve._read_from_file") as mock:
+        with patch("djangokeys.deprecated.retrieve._read_from_file") as mock:
             mock.side_effect = IOError("could not read")
             with pytest.raises(CouldNotAccessKey):
                 retrieve_key_from_file(self.NEW_SECRET_PATH, strict=False)

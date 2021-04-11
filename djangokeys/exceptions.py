@@ -42,7 +42,7 @@ class EnvironmentVariableNotFound(DjangoKeysException):
 
 
 class ValueIsEmpty(DjangoKeysException):
-    """
+    """ Environment variable was set with an empty string, but it shouldn't be.
     """
     pass
 

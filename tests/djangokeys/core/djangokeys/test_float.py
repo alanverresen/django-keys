@@ -5,7 +5,7 @@
 
 import pytest
 
-from djangokeys.djangokeys import DjangoKeys
+from djangokeys.core.djangokeys import DjangoKeys
 from djangokeys.exceptions import EnvironmentVariableNotFound
 from djangokeys.exceptions import ValueIsEmpty
 from djangokeys.exceptions import ValueTypeMismatch

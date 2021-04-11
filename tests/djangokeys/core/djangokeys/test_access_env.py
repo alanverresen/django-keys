@@ -3,7 +3,7 @@
 
 # Contains tests for accessing env vars that aren't listed in .env.
 
-from djangokeys.djangokeys import DjangoKeys
+from djangokeys.core.djangokeys import DjangoKeys
 
 from tests.files import EMPTY_ENV_PATH
 from tests.utils.environment_vars import use_environment_variable
