@@ -108,9 +108,8 @@ The `.env` file will be generated at the location specified in the settings
 file. It will automatically generate a new secret key, if the `secret_key()`
 method is used in your settings file to access the environment variable.
 
-.. note::
+**IMPORTANT: The `generate-env` action hasn't been implemented yet.**
 
-   The **generate-env** action hasn't been implemented yet.
 
 ==============================================================================
 Install
