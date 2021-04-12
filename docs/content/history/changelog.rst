@@ -32,6 +32,13 @@ The following changes may happen in the future:
 - support for HashiCorp Vault
 - add support for other secrets management services
 
+1.0.3 - 2021-04-12
+------------------
+
+CHANGED
+~~~~~~~
+- DjangoKeys can now be used without existing .env file.
+
 
 1.0.2 - 2021-04-11
 ------------------
