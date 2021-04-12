@@ -6,8 +6,6 @@
 import os
 import dotenv
 
-from djangokeys.exceptions import FileDoesNotExist
-
 
 def read_values_from_env(filepath):
     """ Reads environment variables from .env file with a given path.
@@ -17,6 +15,6 @@ def read_values_from_env(filepath):
     :rtype: dict
     """
     if not os.path.exists(filepath):
-        msg = "Could not read environment variables from '{}'."
-        raise FileDoesNotExist(msg.format(filepath))
+        # TODO: inform that .env file did not exist
+        return dict()
     return dotenv.dotenv_values(filepath)

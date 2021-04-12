@@ -3,9 +3,6 @@
 
 # Contains tests for reading environment variables from .env file.
 
-import pytest
-
-from djangokeys.exceptions import FileDoesNotExist
 from djangokeys.core.env import read_values_from_env
 
 from tests.files import EXAMPLE1_ENV_PATH
@@ -13,10 +10,11 @@ from tests.utils.environment_vars import use_environment_variable
 
 
 def test__read_values_from_env__file_does_not_exist():
-    """ Tests that an exception is raised if the .env file does not exist.
+    """ Tests that an empty directory is returned when .env doesn't exist.
     """
-    with pytest.raises(FileDoesNotExist):
-        read_values_from_env("does_not_exist.env")
+    values = read_values_from_env("does_not_exist.env")
+    assert type(values) == dict
+    assert len(values) == 0
 
 
 def test__read_values_from_env__file_exists():
