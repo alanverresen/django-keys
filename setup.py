@@ -42,7 +42,7 @@ setup(
 
     name="django-keys",
     url="https://github.com/alanverresen/django-keys",
-    version="1.0.2",
+    version="1.0.3",
     python_requires=">=3.7",
     license="MIT",
 
