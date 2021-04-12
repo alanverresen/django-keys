@@ -69,10 +69,12 @@ variables set by the execution environment, our local dev machine.
    keys.report_problems()
 
 
-When we later try to test, deploy, ... our Django project, we can set the
-environment variables in a Dockerfile, Travis' web interface, ... instead of
-having to create a local `.env` file, to specify the settings for that
-execution environment.
+When we later try to test, deploy, ... our Django project, we can specify the
+settings for that execution environment using environment variables in a
+Dockerfile, via Travis' web interface, ... instead of having to create a local
+`.env` file. When the local `.env` file doesn't exist, the program continuous,
+assuming that all environment variables have been set by the execution
+environment.
 
 
 ===============================================================================
@@ -101,7 +103,7 @@ automatically generate a new .env file with all used environment variables:
 
 .. code-block:: sh
 
-    $ python3 -m djangokeys generate-env 'config.settings'
+    $ python3 -m djangokeys generate-env --settings 'config.settings'
 
 
 The `.env` file will be generated at the location specified in the settings

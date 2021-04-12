@@ -14,14 +14,21 @@ from djangokeys.exceptions import ValueIsEmpty
 class DjangoKeys:
     """ Used to access values of environment variables that have been set by
         the execution environment, or are listed in an .env file.
+
+        - environment variables specified by the .env file cannot overwrite
+          environment variables set by the execution environment, unless
+          `overwrite=True` when accessing the environment variable
+        - the usage of a .env file is optional, so if no .env file exists at
+          the specified location, the program continues silently
     """
 
-    def __init__(self, path):
+    def __init__(self, path=".env"):
         """ Initializes a new instance of DjangoKeys.
 
-        :param str path: filepath to .env file containing environment vars
+        The usage of a .env file is optional. Therefore, if no .env file exists
+        at the specified location, the program continues silently.
 
-        :raises FileDoesNotExist: specified .env file was not found
+        :param str path: filepath to .env file containing environment vars
         """
         self._path = path
         self._values = read_values_from_env(path)
