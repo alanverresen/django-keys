@@ -20,7 +20,7 @@ allows you to specify the settings of your Django project in two ways:
 The configuration of a Django project typically varies based on its deployment
 environment (development, production, testing, ...). This hybrid approach
 makes it easy to specify and manage the settings per environment, regardless of
-the execution environment and tools that are used.
+the execution environment and the tools that are used.
 
 
 ===============================================================================
@@ -69,10 +69,10 @@ variables set by the execution environment, our local dev machine.
    keys.report_problems()
 
 
-When we later try to test, deploy, etc. our applications, we can set the
-environment variables in a Dockerfile, Travis' web interface, etc., for that
-specific execution environment, instead of having to create a local `.env`
-file with our settings.
+When we later try to test, deploy, ... our Django project, we can set the
+environment variables in a Dockerfile, Travis' web interface, ... instead of
+having to create a local `.env` file, to specify the settings for that
+execution environment.
 
 
 ===============================================================================
@@ -81,7 +81,7 @@ CLI Tool
 
 This package also features a convenient commandline interface tool that can be
 used to generate secret keys for Django, or automatically create a new `.env`
-file.
+file based on Django's setting module.
 
 For more information, use the following command:
 
@@ -96,9 +96,8 @@ You can generate a new key by using the `generate-key` action:
 
     $ python3 -m djangokeys generate-key --length 128
 
-After integrating `django-keys` into your settings files, you can also
-generate a new .env file based on your Django settings (**not implemented
-yet**):
+After integrating `django-keys` into Django's settings module, you can also
+automatically generate a new .env file with all used environment variables:
 
 .. code-block:: sh
 
@@ -106,10 +105,12 @@ yet**):
 
 
 The `.env` file will be generated at the location specified in the settings
-file. It will also automatically generate a new secret key, if the
-`secret_key()` method is used in your settings file to access the environment
-variable.
+file. It will automatically generate a new secret key, if the `secret_key()`
+method is used in your settings file to access the environment variable.
 
+.. note::
+
+   The **generate-env** action hasn't been implemented yet.
 
 ==============================================================================
 Install
