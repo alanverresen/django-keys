@@ -10,62 +10,112 @@ django-keys 1.0.2
     :target: https://django-keys.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 
-Python package and CLI tool for generating and handling secret keys used by
-Django applications.
+**django-keys** is a Python 3 package and CLI tool that can be used for
+handling the secret keys and other settings of Django projects securely. It
+allows you to specify the settings of your Django project in two ways:
 
-This Python module is used to generate and handle secret keys for Django:
+* using environment variables set by execution environment
+* using a local .env file containing key-value pairs
 
-* read Django's `SECRET_KEY` from file that is kept out of version control
-* don't need to manage secret key outside of production
-* features a CLI tool to generate secret keys for Django
+The configuration of a Django project typically varies based on its deployment
+environment (development, production, testing, ...). This hybrid approach
+makes it easy to specify and manage the settings per environment, regardless of
+the execution environment and tools that are used.
 
 
 ===============================================================================
-Retrieve `SECRET_KEY` From File
+Basic Usage
 ===============================================================================
 
-`django-keys` provides the function `retrieve_secret_from_file()` for reading
-Django's `SECRET_KEY` from a file that can be kept out of version control. By
-adding the following line, we do not have to worry about managing our secret
-key outside of production.
+During development, we can specify the settings used by our Django project in a
+local '.env' file, so that we do not have to alter the environment variables
+of our dev machine. **This file should be kept out of version control, as it
+may contain sensitive information!**
 
-.. code-block :: python
+.. code-block:: sh
 
-    import djangokeys
+   # .env file
+   EMAIL_HOST=example.org
+   EMAIL_PORT=587
+   EMAIL_USER=user@example.org
+   EMAIL_PASSWORD=password123
+   EMAIL_TLS=true
+   SECRET_KEY=secret123
+   ...
 
-    SECRET_KEY = djangokeys.retrieve_secret_key_from_file("secret.key", strict=(not DEBUG))
+After specifying the settings that we will use during development in our
+local `.env` file, we should import the `djangokeys` module, and create an
+instance of the `DjangoKeys` class in Django's settings file. It will load
+all environment variables from our local `.env` file, or the environment
+variables set by the execution environment, our local dev machine.
 
-When the strict parameter is set to `True`, it is required that the file
-exists. If it cannot be found, an exception is raised. However, if strict is
-set to False, a file is generated with a new secret key.
+.. code-block:: python
+
+   # initialize your DjangoKeys instance
+   from djangokeys import DjangoKeys
+   keys = DjangoKeys("/path/to/.env")
+
+   # automatically convert environment variables to the right type
+   EMAIL_HOST = keys.str("EMAIL_HOST")
+   EMAIL_PORT = keys.int("EMAIL_PORT")
+   EMAIL_ADDRESS = keys.str("EMAIL_ADDRESS")
+   EMAIL_PASSWORD = keys.str("EMAIL_PASSWORD")
+   EMAIL_USE_TLS = keys.bool("EMAIL_USE_TLS")
+
+   # use the .secret_key method to access your secret key
+   SECRET_KEY = keys.secret_key("SECRET_KEY")
+
+   # check for any potential problems
+   keys.report_problems()
 
 
-==============================================================================
+When we later try to test, deploy, etc. our applications, we can set the
+environment variables in a Dockerfile, Travis' web interface, etc., for that
+specific execution environment, instead of having to create a local `.env`
+file with our settings.
+
+
+===============================================================================
 CLI Tool
-==============================================================================
+===============================================================================
 
-This module also features a CLI tool that can be used to generate secret
-keys for Django.
+This package also features a convenient commandline interface tool that can be
+used to generate secret keys for Django, or automatically create a new `.env`
+file.
 
 For more information, use the following command:
 
-.. code-block :: sh
+.. code-block:: sh
 
     $ python3 -m djangokeys --help
 
 
-You can generate a new key and store it in the file `secret.key` by using the
-command below:
+You can generate a new key by using the `generate-key` action:
 
-.. code-block :: sh
+.. code-block:: sh
 
-    $ python3 -m djangokeys --length 128 > secret.key
+    $ python3 -m djangokeys generate-key --length 128
+
+After integrating `django-keys` into your settings files, you can also
+generate a new .env file based on your Django settings (**not implemented
+yet**):
+
+.. code-block:: sh
+
+    $ python3 -m djangokeys generate-env 'config.settings'
+
+
+The `.env` file will be generated at the location specified in the settings
+file. It will also automatically generate a new secret key, if the
+`secret_key()` method is used in your settings file to access the environment
+variable.
 
 
 ==============================================================================
 Install
 ==============================================================================
 
+This package is currently available for Python 3.7 and up.
 You can install this package using pip:
 
 .. code-block:: sh
@@ -78,4 +128,3 @@ License
 ==============================================================================
 
 This project is released under the MIT license.
-
