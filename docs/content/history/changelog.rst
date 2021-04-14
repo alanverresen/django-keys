@@ -32,6 +32,15 @@ The following changes may happen in the future:
 - support for HashiCorp Vault
 - add support for other secrets management services
 
+
+1.0.4 - 2021-04-14
+------------------
+
+ADDED
+~~~~~
+- Added module for logging information.
+
+
 1.0.3 - 2021-04-12
 ------------------
 
