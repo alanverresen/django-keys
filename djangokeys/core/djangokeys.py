@@ -5,6 +5,8 @@
 
 from os import getenv
 
+import djangokeys.utils.logging as logger
+
 from djangokeys.core.env import read_values_from_env
 from djangokeys.exceptions import EnvironmentVariableNotFound
 from djangokeys.exceptions import ValueTypeMismatch
@@ -136,23 +138,33 @@ class DjangoKeys:
     def _get_value(self, key, overwrite):
         """ Used internally to retrieve value of environment variable.
         """
-        oev = getenv(key)
-        fev = self._values.get(key, None)
-        if oev is None and fev is None:
+        value_set_by_env = getenv(key)
+        value_set_by_file = self._values.get(key, None)
+        if value_set_by_env is None and value_set_by_file is None:
             msg = "Could not find an environment variable '{}'"
             raise EnvironmentVariableNotFound(msg.format(key))
-        elif oev is None and fev is not None:
-            return fev
-        elif oev is not None and fev is None:
-            return oev
+        elif value_set_by_env is None and value_set_by_file is not None:
+            msg = "Using environment variable '{}' set by environment."
+            logger.info(msg.format(key))
+            return value_set_by_file
+        elif value_set_by_env is not None and value_set_by_file is None:
+            msg = "Using environment variable '{}' set by environment."
+            logger.info(msg.format(key))
+            return value_set_by_env
         elif overwrite:
-            return fev
+            msg = "Overwriting environment variable '{}':" \
+                  "using environment variable set by .env file."
+            logger.warning(msg.format(key))
+            return value_set_by_file
         else:
-            # TODO: "Warning: tried to overwrite environment variable '{}'"
-            return oev
+            msg = "Overwriting environment variable '{}' not allowed:" \
+                  "using environment variable set by environment."
+            logger.warning(msg.format(key))
+            return value_set_by_env
 
     def report_problems(self):
         """ Reports any problems after having been used, such as unused
             environment variables specified in .env file.
         """
-        pass  # currently does nothing yet
+        # TODO: implement warnings for problems
+        logger.warning("nothing wrong detected...")

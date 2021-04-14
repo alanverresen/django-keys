@@ -12,7 +12,7 @@ if __name__ == "__main__":
     import argparse
     import sys
 
-    from djangokeys.core.generate import generate_django_key
+    from djangokeys.core.secret_key import generate_django_key
     from djangokeys.settings import DJANGO_DEFAULT_KEY_LENGTH
 
     # build parser object

@@ -6,6 +6,8 @@
 import os
 import dotenv
 
+import djangokeys.utils.logging as logger
+
 
 def read_values_from_env(filepath):
     """ Reads environment variables from .env file with a given path.
@@ -15,6 +17,7 @@ def read_values_from_env(filepath):
     :rtype: dict
     """
     if not os.path.exists(filepath):
-        # TODO: inform that .env file did not exist
+        msg = "Did not find .env file at specified location: '{}'."
+        logger.debug(msg.format(filepath))
         return dict()
     return dotenv.dotenv_values(filepath)
