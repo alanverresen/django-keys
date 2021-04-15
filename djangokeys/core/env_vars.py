@@ -5,8 +5,7 @@
 
 import os
 
-import dotenv
-
+from djangokeys.core.dotenv_file import read_values_from_dotenv_file
 from djangokeys.exceptions import EnvironmentVariableNotFound
 from djangokeys.utils import logging as logger
 
@@ -21,7 +20,7 @@ class EnvironmentVariables:
     def __init__(self, filepath):
         """ Initializes a new instance of EnvironmentVariables.
         """
-        self._dotenv = _read_values_from_dotenv_file(filepath)
+        self._dotenv = read_values_from_dotenv_file(filepath)
 
     def get_value(self, key, overwrite):
         """ Returns value set by a given environment variable.
@@ -62,17 +61,3 @@ class EnvironmentVariables:
                   "using environment variable set by environment."
             logger.warning(msg.format(key))
             return v_env
-
-
-def _read_values_from_dotenv_file(filepath):
-    """ Reads environment variables from .env file with a given path.
-
-    :param str filepath: path of file
-    :return: dictionary containing key-value pairs listed in file
-    :rtype: dict
-    """
-    if not os.path.exists(filepath):
-        msg = "Did not find .env file at specified location: '{}'."
-        logger.debug(msg.format(filepath))
-        return dict()
-    return dotenv.dotenv_values(filepath)
